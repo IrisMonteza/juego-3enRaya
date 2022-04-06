@@ -5,6 +5,8 @@ let add = 0;
 let finishedGame = false;
 let winnerText = document.getElementById('winnerText');
 let buttons = Array.from(document.getElementsByTagName('button'));
+// CommonJS
+// import * as Swal from 'sweetalert2';
 
 // Función para guardar el nombre en el Local Storage
 function SaveNameLS() {
@@ -33,18 +35,26 @@ function addPiece(event) {
       }
     }
 
+    let message = '';
     if (stateGame == 1) {
-      winnerText.style.visibility = 'visible';
-      winnerText.innerHTML = `Felicidades ${localStorage.getItem(
+      message = `Felicidades ${localStorage.getItem(
         'Jugador'
       )} ¡Ganaste el Juego!`;
       finishedGame = true;
     } else if (stateGame == -1) {
-      winnerText.innerHTML = `¡Oh no ${localStorage.getItem(
+      message = `¡Oh no ${localStorage.getItem(
         'Jugador'
       )}! ¡Perdiste el juego!`;
       finishedGame = true;
-      winnerText.style.visibility = 'visible';
+    }
+    if (finishedGame) {
+      Swal.fire({
+        title: message,
+        text: 'Gracias por jugar',
+        // icon: 'success',
+        confirmButtonText: 'OK',
+      });
+      localStorage.removeItem('Jugador');
     }
   }
 }
@@ -59,10 +69,10 @@ function cambiarTurno() {
 
 function state() {
   // Que fila está esa victoria
-  victoryPosition = 0;
+  let victoryPosition = 0;
 
   // 0-> La partida continúa, -1 -> Si ganó el bot , 1 -> Si ganó el jugador
-  sState = 0;
+  let sState = 0;
 
   function areEqual(...args) {
     values = args.map((x) => x.innerHTML);
