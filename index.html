@@ -4,12 +4,31 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
     <title>Juego (3 en raya)</title>
   </head>
   <body>
-    <input id="gamer" type="text" />
-    <button onclick="SaveNameLS()" id="btn_save">Jugar!</button>
-    <table></table>
+    <p id="winnerText"></p>
+    <div class="controls">
+      <input id="gamer" type="text" />
+      <input
+        type="submit"
+        onclick="SaveNameLS()"
+        id="btn_save"
+        value="Jugar!"
+      />
+    </div>
+    <div id="grilla">
+      <button></button>
+      <button></button>
+      <button></button>
+      <button></button>
+      <button></button>
+      <button></button>
+      <button></button>
+      <button></button>
+      <button></button>
+    </div>
     <script src="app.js"></script>
   </body>
 </html>
